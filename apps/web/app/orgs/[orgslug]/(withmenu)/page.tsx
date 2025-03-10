@@ -16,7 +16,8 @@ import { getOrgCollections } from '@services/courses/collections'
 import { getServerSession } from 'next-auth'
 import { nextAuthOptions } from 'app/auth/options'
 import { getOrgThumbnailMediaDirectory } from '@services/media/media'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
+
 
 type MetadataProps = {
   params: { orgslug: string }
@@ -31,10 +32,11 @@ export async function generateMetadata({
     revalidate: 0,
     tags: ['organizations'],
   })
+  const t = await getTranslations("General");
 
   // SEO
   return {
-    title: `Home — ${org.name}`,
+    title: `${t('home')} — ${org.name}`,
     description: org.description,
     robots: {
       index: true,
@@ -63,7 +65,7 @@ export async function generateMetadata({
 }
 
 const OrgHomePage = async (params: any) => {
-  const t = useTranslations("General")
+  const t = await getTranslations("HomePage");
   const orgslug = params.params.orgslug
   const session = await getServerSession(nextAuthOptions)
   const access_token = session?.tokens?.access_token
@@ -89,7 +91,7 @@ const OrgHomePage = async (params: any) => {
         {/* Collections */}
         <div className="flex flex-col space-y-4 mb-8">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title="Collections" type="col" />
+            <TypeOfContentTitle title={t('Collections.title')} type="col" />
             <AuthenticatedClientElement
               checkMethod="roles"
               ressourceType="collections"
@@ -142,11 +144,11 @@ const OrgHomePage = async (params: any) => {
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    No collections yet
+                    {t('Collections.noContent')}
                   </h1>
                   <p className="text-md text-gray-400">
                     <ContentPlaceHolderIfUserIsNotAdmin
-                      text="Create collections to group courses together"
+                      text={t('Collections.noContentUserAdmin')}
                     />
                   </p>
                 </div>
@@ -158,7 +160,7 @@ const OrgHomePage = async (params: any) => {
         {/* Courses */}
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title={t("courses")} type="cou" />
+            <TypeOfContentTitle title={t("Courses.title")} type="cou" />
             <AuthenticatedClientElement
               ressourceType="courses"
               action="create"
@@ -207,10 +209,10 @@ const OrgHomePage = async (params: any) => {
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    No courses yet
+                    {t('Courses.noContent')}
                   </h1>
                   <p className="text-md text-gray-400">
-                    <ContentPlaceHolderIfUserIsNotAdmin text='Create courses to add content' />
+                    <ContentPlaceHolderIfUserIsNotAdmin text={t('Courses.noContentUserAdmin')} />
                   </p>
                 </div>
               </div>

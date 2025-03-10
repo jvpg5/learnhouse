@@ -18,7 +18,7 @@ interface CourseProps {
 }
 
 function Courses(props: CourseProps) {
-  const t = useTranslations("General")
+  const t = useTranslations('CoursesPage')
   const orgslug = props.orgslug
   const courses = props.courses
   const searchParams = useSearchParams()
@@ -35,7 +35,7 @@ function Courses(props: CourseProps) {
       <GeneralWrapperStyled>
         <div className="flex flex-col space-y-2 mb-2">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title={t("courses")} type="cou" />
+            <TypeOfContentTitle title={t('title')} type="cou" />
             <AuthenticatedClientElement
               checkMethod="roles"
               action="create"
@@ -52,8 +52,8 @@ function Courses(props: CourseProps) {
                     orgslug={orgslug}
                   />
                 }
-                dialogTitle="Create Course"
-                dialogDescription="Create a new course"
+                dialogTitle={t('createCourseTitle')}
+                dialogDescription={t('createCourseDescription')}
                 dialogTrigger={
                   <button>
                     <NewCourseButton />
@@ -85,13 +85,13 @@ function Courses(props: CourseProps) {
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    No courses yet
+                    {t('noCourses')}
                   </h1>
                   <p className="text-md text-gray-400">
                     {isUserAdmin ? (
-                      "Create a course to add content"
+                      t('createACourse')
                     ) : (
-                      "No courses available yet"
+                      t('noCoursesAvailable')
                     )}
                   </p>
                   {isUserAdmin && (
@@ -112,8 +112,8 @@ function Courses(props: CourseProps) {
                               orgslug={orgslug}
                             />
                           }
-                          dialogTitle="Create Course"
-                          dialogDescription="Create a new course"
+                          dialogTitle={t('createCourseTitle')}
+                          dialogDescription={t('createCourseDescription')}
                           dialogTrigger={
                             <button>
                               <NewCourseButton />

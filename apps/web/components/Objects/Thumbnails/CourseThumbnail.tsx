@@ -18,6 +18,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@components/ui/dropdown-menu"
+import { useTranslations } from 'next-intl'
 
 type Course = {
   course_uuid: string
@@ -39,16 +40,17 @@ function CourseThumbnail({ course, orgslug, customLink }: PropsType) {
   const router = useRouter() 
   const org = useOrg() as any
   const session = useLHSession() as any
+  const t = useTranslations("Components.CourseThumbnail");
 
   const deleteCourse = async () => {
     const toastId = toast.loading('Deleting course...')
     try {
       await deleteCourseFromBackend(course.course_uuid, session.data?.tokens?.access_token)
       await revalidateTags(['courses'], orgslug)
-      toast.success('Course deleted successfully')
+      toast.success(t('toastDeleteSuccess'))
       router.refresh()
     } catch (error) {
-      toast.error('Failed to delete course')
+      toast.error(t('toastDeleteError'))
     } finally {
       toast.dismiss(toastId)
     }
@@ -84,6 +86,7 @@ const AdminEditOptions = ({ course, orgSlug, deleteCourse }: {
   orgSlug: string
   deleteCourse: () => Promise<void>
 }) => {
+  const t = useTranslations("Components.CourseThumbnail");
   return (
     <AuthenticatedClientElement
       action="update"
@@ -101,12 +104,12 @@ const AdminEditOptions = ({ course, orgSlug, deleteCourse }: {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuItem asChild>
               <Link prefetch href={getUriWithOrg(orgSlug, `/dash/courses/course/${removeCoursePrefix(course.course_uuid)}/content`)}>
-                <FilePenLine className="mr-2 h-4 w-4" /> Edit Content
+                <FilePenLine className="mr-2 h-4 w-4" /> {t('editContent')}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link prefetch href={getUriWithOrg(orgSlug, `/dash/courses/course/${removeCoursePrefix(course.course_uuid)}/general`)}>
-                <Settings2 className="mr-2 h-4 w-4" /> Settings
+                <Settings2 className="mr-2 h-4 w-4" /> {t('settings')}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
@@ -116,7 +119,7 @@ const AdminEditOptions = ({ course, orgSlug, deleteCourse }: {
                 dialogTitle={`Delete ${course.name}?`}
                 dialogTrigger={
                   <button className="w-full text-left flex items-center px-2 py-1 rounded-md text-sm bg-rose-500/10 hover:bg-rose-500/20 transition-colors text-red-600">
-                    <BookMinus className="mr-4 h-4 w-4" /> Delete Course
+                    <BookMinus className="mr-4 h-4 w-4" /> {t('delete')}
                   </button>
                 }
                 functionToExecute={deleteCourse}

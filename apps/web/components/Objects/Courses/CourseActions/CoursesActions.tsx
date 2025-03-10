@@ -12,6 +12,7 @@ import { LogIn, LogOut, ShoppingCart, AlertCircle } from 'lucide-react'
 import Modal from '@components/Objects/StyledElements/Modal/Modal'
 import CoursePaidOptions from './CoursePaidOptions'
 import { checkPaidAccess } from '@services/payments/payments'
+import { useTranslations } from 'next-intl'
 
 interface Author {
   user_uuid: string
@@ -43,7 +44,9 @@ interface CourseActionsProps {
 }
 
 // Separate component for author display
-const AuthorInfo = ({ author, isMobile }: { author: Author, isMobile: boolean }) => (
+const AuthorInfo = ({ author, isMobile }: { author: Author, isMobile: boolean }) => {
+  const t = useTranslations('Components.CourseActions');;
+  return (
   <div className="flex flex-row md:flex-col mx-auto space-y-0 md:space-y-3 space-x-4 md:space-x-0 px-2 py-2 items-center">
     <UserAvatar
       border="border-8"
@@ -52,7 +55,7 @@ const AuthorInfo = ({ author, isMobile }: { author: Author, isMobile: boolean })
       width={isMobile ? 60 : 100}
     />
     <div className="md:-space-y-2">
-      <div className="text-[12px] text-neutral-400 font-semibold">Author</div>
+      <div className="text-[12px] text-neutral-400 font-semibold">{t('author')}</div>
       <div className="text-lg md:text-xl font-bold text-neutral-800">
         {(author.first_name && author.last_name) ? (
           <div className="flex space-x-2 items-center">
@@ -69,9 +72,10 @@ const AuthorInfo = ({ author, isMobile }: { author: Author, isMobile: boolean })
       </div>
     </div>
   </div>
-)
+)}
 
 const Actions = ({ courseuuid, orgslug, course }: CourseActionsProps) => {
+  const t = useTranslations('Components.CourseActions')
   const router = useRouter()
   const session = useLHSession() as any
   const [linkedProducts, setLinkedProducts] = useState<any[]>([])
@@ -147,10 +151,10 @@ const Actions = ({ courseuuid, orgslug, course }: CourseActionsProps) => {
             <div className="p-4 bg-green-50 border border-green-200 rounded-lg nice-shadow">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <h3 className="text-green-800 font-semibold">You Own This Course</h3>
+                <h3 className="text-green-800 font-semibold">{t('youOwnThisCourse')}</h3>
               </div>
               <p className="text-green-700 text-sm mt-1">
-                You have purchased this course and have full access to all content.
+                {t('fullAccess')}
               </p>
             </div>
             <button
@@ -164,12 +168,12 @@ const Actions = ({ courseuuid, orgslug, course }: CourseActionsProps) => {
               {isStarted ? (
                 <>
                   <LogOut className="w-5 h-5" />
-                  Leave Course
+                  {t('leaveCourse')}
                 </>
               ) : (
                 <>
                   <LogIn className="w-5 h-5" />
-                  Start Course
+                  {t('startCourse')}
                 </>
               )}
             </button>
@@ -178,10 +182,10 @@ const Actions = ({ courseuuid, orgslug, course }: CourseActionsProps) => {
           <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg nice-shadow">
             <div className="flex items-center gap-3">
               <AlertCircle className="w-5 h-5 text-amber-800" />
-              <h3 className="text-amber-800 font-semibold">Paid Course</h3>
+              <h3 className="text-amber-800 font-semibold">{t('paidCourse')}</h3>
             </div>
             <p className="text-amber-700 text-sm mt-1">
-              This course requires purchase to access its content.
+              {t('requiresPurchase')}
             </p>
           </div>
         )}
@@ -192,8 +196,8 @@ const Actions = ({ courseuuid, orgslug, course }: CourseActionsProps) => {
               isDialogOpen={isModalOpen}
               onOpenChange={setIsModalOpen}
               dialogContent={<CoursePaidOptions course={course} />}
-              dialogTitle="Purchase Course"
-              dialogDescription="Select a payment option to access this course"
+              dialogTitle={t('purchaseCourse')}
+              dialogDescription={t('selectPaymentOption')}
               minWidth="sm"
             />
             <button
@@ -201,7 +205,7 @@ const Actions = ({ courseuuid, orgslug, course }: CourseActionsProps) => {
               onClick={() => setIsModalOpen(true)}
             >
               <ShoppingCart className="w-5 h-5" />
-              Purchase Course
+              {t('purchaseCourse')}
             </button>
           </>
         )}
@@ -221,17 +225,17 @@ const Actions = ({ courseuuid, orgslug, course }: CourseActionsProps) => {
       {!session.data?.user ? (
         <>
           <LogIn className="w-5 h-5" />
-          Authenticate to start course
+          {t('authenticateToStart')}
         </>
       ) : isStarted ? (
         <>
           <LogOut className="w-5 h-5" />
-          Leave Course
+          {t('leaveCourse')}
         </>
       ) : (
         <>
           <LogIn className="w-5 h-5" />
-          Start Course
+          {t('startCourse')}
         </>
       )}
     </button>

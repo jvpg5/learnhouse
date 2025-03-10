@@ -21,7 +21,7 @@ import CoursesActions from '@components/Objects/Courses/CourseActions/CoursesAct
 import { useTranslations } from 'next-intl'
 
 const CourseClient = (props: any) => {
-  const t = useTranslations("General");
+  const t = useTranslations("CoursePage");
   const [learnings, setLearnings] = useState<any>([])
   const courseuuid = props.courseuuid
   const orgslug = props.orgslug
@@ -71,7 +71,7 @@ const CourseClient = (props: any) => {
         <GeneralWrapperStyled>
           <div className="pb-3 flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>
-              <p className="text-md font-bold text-gray-400 pb-2">{t("course")}</p>
+              <p className="text-md font-bold text-gray-400 pb-2">Course</p>
               <h1 className="text-3xl md:text-3xl -mt-3 font-bold">{course.name}</h1>
             </div>
             <div className="mt-4 md:mt-0">
@@ -110,7 +110,7 @@ const CourseClient = (props: any) => {
 
           <div className="flex flex-col md:flex-row md:space-x-10 space-y-6 md:space-y-0 pt-10">
             <div className="course_metadata_left w-full md:basis-3/4 space-y-2">
-              <h2 className="py-3 text-2xl font-bold">About</h2>
+              <h2 className="py-3 text-2xl font-bold">{t('about')}</h2>
               <div className="bg-white shadow-md shadow-gray-300/25 outline outline-1 outline-neutral-200/40 rounded-lg overflow-hidden">
                 <p className="py-5 px-5 whitespace-pre-wrap">{course.about}</p>
               </div>
@@ -118,7 +118,7 @@ const CourseClient = (props: any) => {
               {learnings.length > 0 && learnings[0]?.text !== 'null' && (
                 <div>
                   <h2 className="py-3 text-2xl font-bold">
-                    What you will learn
+                    {t('whatYouWillLearn')}
                   </h2>
                   <div className="bg-white shadow-md shadow-gray-300/25 outline outline-1 outline-neutral-200/40 rounded-lg overflow-hidden px-5 py-5 space-y-2">
                     {learnings.map((learning: any) => {
@@ -160,7 +160,7 @@ const CourseClient = (props: any) => {
                 </div>
               )}
 
-              <h2 className="py-3 text-xl md:text-2xl font-bold">Course Lessons</h2>
+              <h2 className="py-3 text-xl md:text-2xl font-bold">{t('courseLessons')}</h2>
               <div className="bg-white shadow-md shadow-gray-300/25 outline outline-1 outline-neutral-200/40 rounded-lg overflow-hidden">
                 {course.chapters.map((chapter: any) => {
                   return (
@@ -243,7 +243,7 @@ const CourseClient = (props: any) => {
                                           rel="noopener noreferrer"
                                         >
                                           <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
-                                            <p>Page</p>
+                                            <p>{t('page')}</p>
                                             <ArrowRight size={13} />
                                           </div>
                                         </Link>
@@ -263,7 +263,7 @@ const CourseClient = (props: any) => {
                                         rel="noopener noreferrer"
                                       >
                                         <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
-                                          <p>Video</p>
+                                          <p>{t('video')}</p>
                                           <ArrowRight size={13} />
                                         </div>
                                       </Link>
@@ -284,7 +284,7 @@ const CourseClient = (props: any) => {
                                           rel="noopener noreferrer"
                                         >
                                           <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
-                                            <p>Document</p>
+                                            <p>{t('document')}</p>
                                             <ArrowRight size={13} />
                                           </div>
                                         </Link>
@@ -305,7 +305,7 @@ const CourseClient = (props: any) => {
                                           rel="noopener noreferrer"
                                         >
                                           <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
-                                            <p>Assignment</p>
+                                            <p>{t('assignment')}</p>
                                             <ArrowRight size={13} />
                                           </div>
                                         </Link>

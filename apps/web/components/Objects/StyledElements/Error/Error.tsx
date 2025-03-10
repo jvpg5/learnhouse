@@ -1,13 +1,14 @@
 'use client'
 import { getUriWithoutOrg } from '@services/config/config'
 import { AlertTriangle, HomeIcon, RefreshCcw } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 function ErrorUI(params: { message?: string, submessage?: string }) {
   const router = useRouter()
-
+  const t = useTranslations("General");
   function reloadPage() {
     router.refresh()
     window.location.reload()
@@ -28,14 +29,14 @@ function ErrorUI(params: { message?: string, submessage?: string }) {
           className="flex space-x-2 items-center rounded-full px-4 py-1 text-rose-200 bg-rose-700 hover:bg-rose-800 transition-all ease-linear shadow-lg "
         >
           <RefreshCcw className="text-rose-200" size={17} />
-          <span className="text-md font-bold">Retry</span>
+          <span className="text-md font-bold">{t('retry')}</span>
         </button>
         <Link
           href={getUriWithoutOrg('/home')}
           className="flex space-x-2 items-center rounded-full px-4 py-1 text-gray-200 bg-gray-700 hover:bg-gray-800 transition-all ease-linear shadow-lg "
         >
           <HomeIcon className="text-gray-200" size={17} />
-          <span className="text-md font-bold">Home</span>
+          <span className="text-md font-bold">{t('home')}</span>
         </Link>
       </div>
     </div>

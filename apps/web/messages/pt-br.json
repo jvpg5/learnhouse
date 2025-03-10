@@ -1,5 +1,125 @@
-{
+{ 
+  "General": {
+    "course": "Curso",
+    "courses": "Cursos",
+    "collection": "Coleção",
+    "collections": "Coleções",
+    "trail": "Trilha",
+    "home": "Início",
+    "noContentYet": "Ainda não há conteúdo",
+    "madeWith": "Feito com"
+  },
+  "Components": {
+    "Button": {
+      "newCourse": "Novo Curso",
+      "newCollecction": "Nova Coleção"
+    },
+    "CourseThumbnail": {
+      "editContent": "Edit content",
+      "settings": "Settings",
+      "delete": "Delete Course",
+      "toastDeleteSuccess": "Course deleted successfully",
+      "toastDeleteError": "Failed to delete course"
+    },
+    "CreateCourseModal": {
+      "createCourse": "Create Course",
+      "schemaNameRequired": "Course name is required",
+      "schemaNameMax": "Must be 100 characters or less",
+      "schemaDescriptionMax": "Must be 1000 characters or less",
+      "toastLoading": "Creating course...",
+      "toastSuccess": "Course created successfully",
+      "toastError": "Failed to create course",
+      "toastErrorUnsplash": "Failed to load image from Unsplash",
+      "labelName": "Course Name",
+      "labelDescription": "Description",
+      "labelThumbnail": "Course Thumbnail",
+      "thumbnailUpload": "Upload Image",
+      "thumbnailChoose": "Choose from gallery",
+      "labelLearnings": "Course Learnings (What will you teach)?",
+      "placeholderLearnings": "Enter to add...",
+      "labelTags": "Course Tags",
+      "placeholderTags": "Enter to add...",
+      "labelVisibility": "Course Visibility",
+      "placeholderVisibility": "Select Visibility",
+      "visibilityItemPublic": "Public (Available to see on the internet)",
+      "visibilityItemPrivate": "Private (Private to users)"
+    }
+  },
+  "HomePage": {
+    "Collections": {
+      "title": "Coleções",
+      "noContent": "Ainda não há coleções",
+      "noContentUserAdmin": "Crie coleções para agrupar cursos"
+    },
+    "Courses": {
+      "title": "Cursos",
+      "noContent": "Ainda não há cursos",
+      "noContentUserAdmin": "Crie cursos para adicionar conteúdo"
+    }
+  },
   "NotFoundPage": {
-    "message": "Lamentamos muito pelo inconveniente. Parece que você está tentando<br></br>acessar uma página que foi deletada ou nunca existiu antes"
+    "message": "Lamentamos muito pelo inconveniente. Parece que você está tentando<br></br>acessar uma página que foi deletada ou nunca existiu antes",
+    "button": "Voltar para página inicial"
+  },
+  "SignupPage":{
+    "signUp": "Cadastrar-se",
+    "invited": "Você foi convidado para se juntar",
+    "hi": "Olá",
+    "join": "juntar-se",
+    "inviteCodeRequired": "Um código de convite é necessário para se juntar",
+    "submit": "Enviar"
+  },
+  "DashPage":{
+    "Card":{
+      "Courses": {
+        "title": "Cursos",
+        "description": "Crie e gerencie cursos, capítulos e atividades"
+      },
+      "Organization": {
+        "title": "Organização",
+        "description": "Configure as configurações gerais da sua organização"
+      },
+      "Users": {
+        "title": "Usuários",
+        "description": "Gerencie os usuários e papéis da sua organização"
+      },
+      "AccountSettings": {
+        "title": "Configurações da Conta",
+        "description": "Configure suas configurações pessoais, senhas, email"
+      }
+    },
+    "LearnhouseUniversity": "Universidade LearnHouse",
+    "Courses": {
+      "title": "Cursos",
+      "noCourses": "Ainda não há cursos",
+      "noCoursesavailable": "Ainda não há cursos disponíveis",
+      "createACourse": "Crie um curso para adicionar conteúdo",
+      "general": "Geral",
+      "access": "Acesso",
+      "content": "Conteúdo"
+    }
+  },
+  "NewCollectionPage": {
+    "title": "Criar Nova Coleção",
+    "description": "Agrupe seus cursos em uma coleção para torná-los mais fáceis de encontrar e gerenciar.",
+    "labelName": "Nome da Coleção",
+    "placeholderName": "Digite o nome da coleção",
+    "labelVisibility": "Visibilidade",
+    "visibilityPublic": "Coleção Pública - Visível para todos",
+    "visibilityPrivate": "Coleção Privada - Apenas visível para membros da organização",
+    "labelDescription": "Descrição",
+    "placeholderDescription": "Digite a descrição da coleção",
+    "labelSelectCourses": "Selecionar Cursos",
+    "noCourses": "Nenhum curso disponível. Crie alguns cursos primeiro.",
+    "selectedCourses": "Cursos selecionados",
+    "cancel": "Cancelar",
+    "create": "Criar Coleção",
+    "creating": "Criando...",
+    "toastNameError": "Por favor, insira um nome para a coleção",
+    "toastDescriptionError": "Por favor, insira uma descrição",
+    "toastCoursesError": "Por favor, selecione pelo menos um curso",
+    "toastSuccess": "Coleção criada com sucesso!",
+    "toastError": "Falha ao criar coleção. Por favor, tente novamente.",
+    "errorLoadingCourses": "Falha ao carregar cursos. Por favor, tente novamente mais tarde."
   }
 }
